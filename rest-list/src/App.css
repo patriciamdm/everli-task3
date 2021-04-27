@@ -1,0 +1,39 @@
+
+main {
+    min-height: 85vh;
+    margin-top: 130px;
+}
+
+.navbar {
+    background-color: #4b914d;
+    box-shadow: 2px 2px 8px lightgray;
+    font-weight: 300;
+    font-size: .9rem;
+    position: fixed;
+    height: 60px;
+    top: 0;
+    width: 100%;
+    z-index: 99996;
+}
+
+.card {
+    border: none;
+    box-shadow: 2px 2px 8px lightgray;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.card-title {
+    max-height: 140px;
+    font-size: 1.2rem;
+    font-weight: 400
+}
+
+.card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    font-size: .9rem;
+    font-weight: 200
+}
