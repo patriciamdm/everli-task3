@@ -6,6 +6,7 @@ const PostCard = ({ post }) => {
     
     const { title, description, image, published_at } = post
 
+    // Reformatting the date for user readability    
     const date = new Date(published_at)
 
     return (

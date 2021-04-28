@@ -16,22 +16,35 @@ const PostsList = () => {
     const [filter, setFilter] = useState()
     const [sort, setSort] = useState(false)
 
-    const getPosts = url => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                setPosts(data.posts)
-                setFilterPosts(data.posts)
-            })
-            .catch(err => setError(err.message))
+
+    // Getting posts from API
+
+    const getPosts = async(url) => {
+        try {
+            const response = await fetch(url)
+            const data = await response.json()
+            setPosts(data.posts)
+            setFilterPosts(data.posts)
+        } catch (err) {
+            setError(`There was an error with the posts: ${err.message}`)
+        }
     }
 
-    const getCategories = url => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setCategories(data.categories))
-            .catch(err => setError(err.message))
+
+    // Getting categories form API
+
+    const getCategories = async(url) => {
+        try {
+            const response = await fetch(url)
+            const data = await response.json()
+            setCategories(data.categories)
+        } catch (err) {
+            setError(`There was an error with the categories: ${err.message}`)
+        }
     }
+
+
+    // Handling the filtering of posts - via dropdown list
 
     useEffect(() => {
         if (filter) {
@@ -40,7 +53,11 @@ const PostsList = () => {
         } else {
             setFilterPosts(posts)
         }
+        // eslint-disable-next-line
     }, [filter])
+
+
+    // Handling the sorting of posts - via toggle button
 
     useEffect(() => {
         const newPosts = filterPosts && [...filterPosts]
@@ -52,7 +69,11 @@ const PostsList = () => {
         } else if (!sort) {
             setFilterPosts(posts)
         }
+        // eslint-disable-next-line
     }, [sort])
+
+
+    // Load all posts and categories list
 
     useEffect(() => {
         getPosts('http://www.mocky.io/v2/5c4350a23800004c00072e0a')
@@ -63,7 +84,7 @@ const PostsList = () => {
         <Container style={{textAlign: 'center'}}>
                 {error
                     ?
-                    <Alert variant='danger'>There was an error! {error}</Alert>
+                    <Alert variant='danger'>{error}</Alert>
                     :
                     filterPosts
                     ?
