@@ -11,8 +11,9 @@ Consider also adding a `show all` filter to return to the default state.
 
 You can find all the categories performing a GET on this endpoint:
 `http://www.mocky.io/v2/5c43503a3800006f00072e08`
+
 Also provide a toggle button ordering the posts by descending `published_at`. The result should be usable from any device.
 
 ### Submition
 
-Send us the complete project compressed and named 'rest-list.zip'.
+Send us the complete project compressed and named 'rest-filters.zip'.
