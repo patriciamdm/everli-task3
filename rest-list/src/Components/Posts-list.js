@@ -13,7 +13,7 @@ const PostsList = () => {
     const [filterPosts, setFilterPosts] = useState()
     const [error, setError] = useState()
 
-    const [filter, setFilter] = useState(false)
+    const [filter, setFilter] = useState()
     const [sort, setSort] = useState(false)
 
     const getPosts = url => {
@@ -33,20 +33,6 @@ const PostsList = () => {
             .catch(err => setError(err.message))
     }
 
-    // const sortBy = value => {
-    //     /* Because of app order in executing, we take the opposite value as parameter instead of changing state and
-    //     getting it from there as it wouldn't make thing in our preferred order */
-    //     setSort(value)
-
-    //     if (value) {
-    //         setFilterPosts(filterPosts.sort((a, b) => (a.published_at < b.published_at) ? 1 : -1))
-    //     } else if (!value && filter) {
-    //         setFilterPosts(posts.filter(elm => elm.category === filter))
-    //     } else {
-    //         setFilterPosts(posts)
-    //     }
-    // }
-
     useEffect(() => {
         if (filter) {
             setSort(false)
@@ -57,8 +43,10 @@ const PostsList = () => {
     }, [filter])
 
     useEffect(() => {
+        const newPosts = filterPosts && [...filterPosts]
         if (sort) {
-            setFilterPosts(filterPosts.sort((a, b) => (a.published_at < b.published_at) ? 1 : -1))
+            newPosts.sort((a, b) => (a.published_at < b.published_at) ? 1 : -1)
+            setFilterPosts(newPosts)
         } else if (!sort && filter) {
             setFilterPosts(posts.filter(elm => elm.category === filter))
         } else if (!sort) {

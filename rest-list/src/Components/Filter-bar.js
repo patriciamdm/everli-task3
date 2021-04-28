@@ -8,8 +8,8 @@ const FilterBar = props => {
     return (
         <Row>
             <DropdownButton title="Filter by">
-                <Dropdown.Item as="button" onClick={() => filterBy('all')}>Show all</Dropdown.Item>
-                {categories.map(elm => <Dropdown.Item key={elm.id} as="button" onClick={() => filterBy(elm.id)}>{elm.title}</Dropdown.Item>)}
+                <Dropdown.Item as="button" onClick={() => filterBy(false)}>Show all</Dropdown.Item>
+                {categories && categories.map(elm => <Dropdown.Item key={elm.id} as="button" onClick={() => filterBy(elm.id)}>{elm.title}</Dropdown.Item>)}
             </DropdownButton>
             <Button onClick={() => props.sortBy()}>Sort</Button>
         </Row>
